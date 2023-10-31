@@ -4,7 +4,7 @@
 #X obj 181 210 note 0 12 Menlo empty 0 0 0 0 0 255 255 255 0 0 ATTACK;
 #X obj 290 148 knob 50 0 127 0 0 empty empty #dfdfdf #7c7c7c black 0 0 0 0 1 320 0 0 0;
 #X obj 289 209 note 0 12 Menlo empty 0 0 0 0 0 255 255 255 0 0 DECAY;
-#X obj 386 147 knob 50 0 127 0 0 empty empty #dfdfdf #7c7c7c black 0 0 0 0 1 320 0 0 0;
+#X obj 386 147 knob 50 0 127 0 127 empty empty #dfdfdf #7c7c7c black 0 0 0 0 1 320 0 0 0;
 #X obj 385 208 note 0 12 Menlo empty 0 0 0 0 0 255 255 255 0 0 SUSTAIN;
 #X obj 484 149 knob 50 0 127 0 0 empty empty #dfdfdf #7c7c7c black 0 0 0 0 1 320 0 0 0;
 #X obj 483 210 note 0 12 Menlo empty 0 0 0 0 0 255 255 255 0 0 RELEASE;
