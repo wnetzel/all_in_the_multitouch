@@ -1,4 +1,6 @@
 # Oscillator 1
+- else/bl.vsaw~
+- else/bl.square~
 
 ## Frequency
 - Base Oscillator Frequency
@@ -22,6 +24,9 @@
 
 
 # Oscillator 2
+- else/bl.vsaw~
+- else/bl.square~
+
 
 ## Frequency
 - Base Oscillator Frequency
@@ -44,8 +49,8 @@
 
 ## Low Freq
 - Switch from OSC to LFO "mode"
-- OSC range 16Hz - 8kHz
-- LFO range 0.1Hz - 50Hz
+- OSC range: 16Hz - 8kHz
+- LFO range: 0.1Hz - 50Hz
 
 ## Keyboard
 - Switch from free-running to keyboard-controlled OSC
@@ -154,3 +159,306 @@
 
 ---
 
+# Filter Envelope
+- else/adsr~
+
+## Attack
+- Attack time: 0 - 10000 ms
+
+## Decay
+- Decay time: 0 - 10000 ms
+
+## Sustain
+- Susain level: 0 - 1
+
+## Release
+- Release time: 0 - 10000 ms
+
+
+---
+
+
+# Amplifier Envelope
+- else/adsr~
+
+## Env Amount
+- Modulation of VCA from amplifier envelope
+- Range: 0 - 1
+
+## Velocity
+- Velocity modulation of Env Amount
+
+## Attack
+- Attack time: 0 - 10000 ms
+
+## Decay
+- Decay time: 0 - 10000 ms
+
+## Sustain
+- Susain level: 0 - 1
+
+## Release
+- Release time: 0 - 10000 ms
+
+
+---
+
+# Effects
+- Adding a few simple FX options instead of the P6 Effects Section
+- Dry/Wet control for each effect
+
+## Chorus
+- else/chorus~
+- Control:
+    - Rate
+    - Depth
+    - Dry/Wet
+
+## Delay
+- else/filterdelay~
+- Control:
+    - Time (ms)
+    - Feedback
+    - Dry/Wet
+
+## Reverb
+- else/free.rev~
+-   Control:
+    - Decay
+    - Width
+    - Dry/Wet
+
+
+---
+
+
+# Low Frequency Oscillator
+- else/lfo (Triangle/Sawtooth/RevSawtooth/Square)
+- else/stepnoise (Random)
+
+- Reset when a key is pressed (but not if a note is held)
+- Control rate LFO/LFN
+
+- Modulation amount controlled with Mod Wheel (0 - 100%)
+
+## Frequency
+- LFO Range: 0.1Hz - 50Hz
+
+## LFO Sync (dropped)
+- LFO sync to MIDI clock
+
+## Shape
+5 shapes + 1 hidden (random shape with frequency maxed)
+
+### Triangle
+- Bipolar
+- message: "vsaw 0.5"
+
+### Sawtooth
+- Unipolar
+- message: "vsaw 1"
+
+### Reverse Sawtooth
+- Unipolar
+- message: "vsaw 0"
+
+### Square
+- Unipolar
+- message: "square 0.5"
+
+### Random
+- Bipolar
+
+### Noise (Hidden)
+- Bipolar
+- Rate: 100Hz (max control rate frequency)
+
+## Initial Amount
+- Modulation amount (0 - 100%)
+    - 0%: Mod Wheel applies modulation
+
+## Freq 1
+- Mod destination: Frequency of Oscillator 1
+
+## Freq 2
+- Mod destination: Frequency of Oscillator 2
+
+## PW 1+2
+- Mod destination: Pulse Width of Oscillator 1 and 2 (if shape = square)
+
+## Amp
+- Mod destination: Amplitude level
+
+## LP Filter
+- Mod destination: Cutoff frequency of Low-Pass Filter
+
+## HP Filter
+- Mod destination: Cutoff frequency of High-Pass Filter
+
+
+---
+
+
+# Poly Mod
+- Modulation matrix
+
+## Modulation Sources
+
+### Filter Env
+- Range: -100% - 100%
+
+### Osc 2
+- Range: -100% - 100%
+
+## Modulation Destinations
+
+### Freq 1
+- Mod destination: Frequency of Oscillator 1
+
+### Shape 1
+- Mod destination: Shape of Oscillator 1
+
+### PW 1
+- Mod destination: Pulse Width of Oscillator 1 (if shape = square)
+
+### Filter
+- Off/LP/HP/LP+HP
+
+#### LP
+- Mod destination: Cutoff frequency of Low-Pass Filter
+
+#### HP
+- Mod destination: Cutoff frequency of High-Pass Filter
+
+
+---
+
+
+# Clock / Arpeggiator / Sequencer (dropped)
+
+
+---
+
+
+# Master Volume
+- else/out~
+- Master volume control (VCA)
+
+
+---
+
+
+# Misc Parameters
+
+## Pan Spread
+- Pan audio in stereo field individually per voice
+- Range: 0 - 100%
+
+## Key Mode (dropped)
+
+## P Whl Range
+- Pitch Wheel Range
+- Range: 0 - 12 semitones
+
+## Prgm Vol (dropped)
+
+
+---
+
+
+# Distortion
+- else/drive~
+
+- Stereo distortion effect
+
+
+---
+
+
+# Transpose (dropped)
+
+
+---
+
+
+# Hold (dropped)
+
+
+---
+
+
+# Glide
+- else/slew~~
+- else/glide~
+
+- 4 modes:
+    - Fixed Rate:
+        - Fixed speed
+        - Longer intervals = slower time
+    - Fixed Rate A
+        - Same as Fixed Rate
+        - Only applied when playing legato
+            - (Turns glide on and off from the keyboard)
+    - Fixed Time
+        - Fixed time (ms)
+        - Longer intervals = faster speed
+    - Fixed Time A
+        - Same as Fixed Time
+        - Only applied when playing legato
+
+## Glide Rate
+- Mode dependent
+
+### Fixed Rate
+- else/slew~~
+- Controls: Speed limit (amplitude per second)
+- Range: XXX - XXXX
+
+### Fixed Time
+- else/glide~
+- Controls: Glide time (ms)
+- Range: 1 - XXXX
+
+## Glide (On/Off)
+- On/Off
+
+
+---
+
+
+# Unison (dropped)
+
+
+---
+
+
+# Aftertouch
+
+## Amount
+- Amount of modulation from aftertouch
+- Range: -1 - 1
+
+## Freq 1
+- Mod destination: Frequency of Oscillator 1
+- Pitch up/down
+
+## Freq 2
+- Mod destination: Frequency of Oscillator 2
+- Pitch up/down
+
+## LFO Amt
+- Mod destination: Amount of modulation from LFO
+- Increase/decrease amount
+
+## Amp
+- Mod destination: Amplitude level
+- Increase/decrease volume
+
+## Filter
+- Off/LP/HP/LP+HP
+
+### LP
+- Mod destination: Cutoff frequency of Low-Pass Filter
+
+### HP
+- Mod destination: Cutoff frequency of High-Pass Filter
