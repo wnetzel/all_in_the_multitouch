@@ -133,7 +133,7 @@
 
 # Low-Pass Filter
 - Four-pole resonant low-pass filter per voice
-- else/lowpass~ x2
+- 2x else/lowpass~ (Two-pole each) in series
 
 ## Cutoff
 - Cutoff frequency of low-pass filter
