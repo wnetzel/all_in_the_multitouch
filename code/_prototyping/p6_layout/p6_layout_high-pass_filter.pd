@@ -19,6 +19,7 @@
 #X obj 475 202 note 0 12 Menlo empty 0 0 0 0 0 255 255 255 0 0 VELOCITY;
 #X obj 511 19 loadbang;
 #X msg 511 43 dim 40 20 \, toggle \, bgcolor 186 186 186 \, fgcolor 186 32 32 \, float 0;
+#X text 107 516 Two-pole resonant High-Pass Filter:;
 #X connect 1 0 13 0;
 #X connect 3 0 14 0;
 #X connect 9 0 15 2;
