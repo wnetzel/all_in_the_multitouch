@@ -5,8 +5,8 @@
  Contains my (simplified) Pure data recreation of a [Sequential Prophet-6](https://www.sequential.com/product/prophet-6/) synthesizer.
 
  Dependencies:
- - [Pure Data (0.54-0)](https://puredata.info/)
- - [Else (1.0-0 RC-9)](https://github.com/porres/pd-else/) library for Pure Data
+ - [Pure Data (0.54-1)](https://puredata.info/)
+ - [Else (1.0-0 RC-10)](https://github.com/porres/pd-else/) library for Pure Data
  - [pd_mpe](https://github.com/DanielRudrich/pd_mpe) Pure Data external for MIDI Polyphonic Expression (MPE)
 
  ## Thesis
