@@ -7,6 +7,7 @@
  Dependencies:
  - [Pure Data (0.54-0)](https://puredata.info/)
  - [Else (1.0-0 RC-9)](https://github.com/porres/pd-else/) library for Pure Data
+ - [pd_mpe](https://github.com/DanielRudrich/pd_mpe) Pure Data external for MIDI Polyphonic Expression (MPE)
 
  ## Thesis
  The Thesis will be added at a later stage.
