@@ -22,8 +22,15 @@
 #X obj 206 508 else/lowpass~;
 #X text 70 548 Four-pole resonant Low-Pass Filter:;
 #X text 71 566 (2x else/lowpass~ (two-pole each) in series);
+#X obj 579 294 select 0 1 2;
+#X obj 568 347 bng 19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000;
+#X obj 614 348 bng 19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000;
+#X obj 660 350 bng 19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000;
+#X text 569 268 Keyboard tracking:;
+#X text 679 295 Off/Half/Full;
 #X connect 1 0 14 0;
 #X connect 3 0 15 0;
+#X connect 8 0 23 0;
 #X connect 9 0 20 0;
 #X connect 10 0 9 2;
 #X connect 10 0 20 2;
@@ -33,3 +40,6 @@
 #X connect 15 0 10 0;
 #X connect 18 0 19 0;
 #X connect 19 0 16 0;
+#X connect 23 0 24 0;
+#X connect 23 1 25 0;
+#X connect 23 2 26 0;

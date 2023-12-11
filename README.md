@@ -2,7 +2,7 @@
  A repository for my thesis in the Master's programme "Music, Communication and Technology" at the University of Oslo.
 
  ## Code
- Contains my (simplified) Pure data recreation of a [Sequential Prophet-6](https://www.sequential.com/product/prophet-6/) synthesizer.
+ Contains "Soothsayer-6", my Pure data instrument inspired by the [Sequential Prophet-6](https://www.sequential.com/product/prophet-6/) synthesizer.
 
  Dependencies:
  - [Pure Data (0.54-1)](https://puredata.info/)
