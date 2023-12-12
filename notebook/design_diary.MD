@@ -46,7 +46,12 @@ The p6_voice.pd sketch is acting both as the start of a "voice card" and also th
 - Added volume adjustment to mixer (sub-oct too low, noise too high)
 - Swapped else/mix4~ with vanilla [*~] since linear volume control was preferred
 
+- Reworked Low-Pass Filter module
+    - Implemented bipolar Envelope amount (Range +/- 48 semitones)
+        - Implemented Velocity modulation of Envelope amount
+    - Implemented Keyboard Tracking (Off/Half/Full) with C4 as center frequency
+- Added Low-Pass Filter to p6_voice
 
 
 #### Reflections and considerations
-I need to make a block diagram of the synthesizer design. This could be beneficial to me in the design process as well. At a later stage, a diagram is  needed for the complete instrument as well.
+I need to make a block diagram of the synthesizer design. This could be beneficial to me in the design process as well. At a later stage, a diagram is  needed for the complete instrument as well. Low Resonance takes the energy out of the sound. Look into that. The externals part of the "Pure Data: Electronic Music and Sound Design" book might address and/or solve this.
