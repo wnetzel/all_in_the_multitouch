@@ -1,7 +1,7 @@
 # Design & Prototyping Diary
-A diary logging the steps in the iterative synthesizer design and implementation process in Pure data.
+A diary logging the steps in the iterative instrument design and implementation process in Pure data.
 
-## Oct/Nov 2023 - Initial design
+## Oct/Nov 2023 - Initial design phase
 - Started the process of designing the synthesizer in Pd, inspired by the Sequential Prophet-6
 - Chose which modules to implement and which to leave out
 - Begun thinking about how to implement features in Pd
@@ -26,7 +26,7 @@ A diary logging the steps in the iterative synthesizer design and implementation
     - Mockup MPE through the TouchKeys software works with Pd
     - We have sound in the oscillator 1 + 2 modules. 
 
-Reflections and considerations:
+#### Reflections and considerations
 The p6_voice.pd sketch is acting both as the start of a "voice card" and also the overall synthesizer panel. At some point I have to separate those parts, by making a voice card abstraction to be cloned for each of the six voices and the overall GUI panel. I also have to consider which module is part of the voice card, and which is global. Maybe I should keep the Graph-On-Parent abstractions for the GUI, and move or abstract the logic inside to a voice card implementation.
 
 ## 12/12/2023
@@ -39,4 +39,14 @@ The p6_voice.pd sketch is acting both as the start of a "voice card" and also th
     - oscillator_2
 - Regular MIDI 'notein' changing the pitch of the oscillators only. No noteoff.
 
+- Moved 'bit' selector from individual modules to global p6_voice
+- Exchanged else/buttons (used for aesthetic purposes) with vanilla toggles, because of initialization issues.
+- Reworked Mixer module
+- Moved Sub-Oscillator to Oscillator 1 module for simplicity
+- Added volume adjustment to mixer (sub-oct too low, noise too high)
+- Swapped else/mix4~ with vanilla [*~] since linear volume control was preferred
 
+
+
+#### Reflections and considerations
+I need to make a block diagram of the synthesizer design. This could be beneficial to me in the design process as well. At a later stage, a diagram is  needed for the complete instrument as well.
