@@ -37,11 +37,13 @@ The p6_voice.pd sketch is acting both as the start of a "voice card" and also th
 
 - Started working on the GUI layout and send/receive architecture of signals in the p6_voice.pd sketch
 
+
 ### Iteration v0.1
 - p6_voice plays a single voice (monophonic) with the following modules:
     - oscillator_1
     - oscillator_2
 - Regular MIDI 'notein' changing the pitch of the oscillators only. No noteoff yet.
+
 
 - Moved 'bit' selector from individual modules to global p6_voice
 - Exchanged else/buttons (used for aesthetic purposes) with vanilla toggles, because of initialization issues.
@@ -72,6 +74,7 @@ I need to make a block diagram of the synthesizer design. This could be benefici
 
 - Reworked and added the Amplifier Envelope module
     - Implemented Env Amount and Velocity modulation
+    - A/D/R with 1-20000 ms range
 
 
 ### Iteration v0.2
@@ -84,5 +87,13 @@ I need to make a block diagram of the synthesizer design. This could be benefici
 - Regular MIDI 'notein' with 'noteoff' through amp envelope.
 
 
+- Changed the filter-typ to [else/svfilter~] for better resonance response.
+    - 2x 2-pole in series
+    - Implementation of Chamberlin's state-variable filter algorithm
+- Removed the resonance control of the second filter, it should only control the first in the series.
+- Reworked and added Filter Envelope module
+    - A/D/R with 1-20000 ms range
+
+
 #### Reflections and considerations
-There is pops and glitches in sound if turning knobs when note is playing (specifically amp env amount). Consider adding lines to smooth parameter changes (slew/lag). 
+There is pops and glitches in sound if turning knobs when note is playing (specifically amp env amount). Consider adding lines to smooth parameter changes (slew/lag).
