@@ -15,6 +15,8 @@ A diary logging the steps in the iterative instrument design and implementation 
     - amplifier_envelope
 - Oscillator 1 + 2 makes sound with features resembling the Prophet 6
 
+---
+
 ## 11/12/2023
 - Started a p6_voice.pd sketch, making a GUI with the module abstractions
 - Reworked Oscillator 1 + 2
@@ -29,15 +31,17 @@ A diary logging the steps in the iterative instrument design and implementation 
 #### Reflections and considerations
 The p6_voice.pd sketch is acting both as the start of a "voice card" and also the overall synthesizer panel. At some point I have to separate those parts, by making a voice card abstraction to be cloned for each of the six voices and the overall GUI panel. I also have to consider which module is part of the voice card, and which is global. Maybe I should keep the Graph-On-Parent abstractions for the GUI, and move or abstract the logic inside to a voice card implementation.
 
+---
+
 ## 12/12/2023
 
 - Started working on the GUI layout and send/receive architecture of signals in the p6_voice.pd sketch
 
 ### Iteration v0.1
-- p6_voice plays a single voice with the following modules:
+- p6_voice plays a single voice (monophonic) with the following modules:
     - oscillator_1
     - oscillator_2
-- Regular MIDI 'notein' changing the pitch of the oscillators only. No noteoff.
+- Regular MIDI 'notein' changing the pitch of the oscillators only. No noteoff yet.
 
 - Moved 'bit' selector from individual modules to global p6_voice
 - Exchanged else/buttons (used for aesthetic purposes) with vanilla toggles, because of initialization issues.
@@ -52,6 +56,9 @@ The p6_voice.pd sketch is acting both as the start of a "voice card" and also th
     - Implemented Keyboard Tracking (Off/Half/Full) with C4 as center frequency
 - Added Low-Pass Filter to p6_voice
 
-
 #### Reflections and considerations
 I need to make a block diagram of the synthesizer design. This could be beneficial to me in the design process as well. At a later stage, a diagram is  needed for the complete instrument as well. Low Resonance takes the energy out of the sound. Look into that. The externals part of the "Pure Data: Electronic Music and Sound Design" book might address and/or solve this.
+
+---
+
+## 13/12/2023
