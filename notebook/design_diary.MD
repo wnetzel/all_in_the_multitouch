@@ -93,7 +93,22 @@ I need to make a block diagram of the synthesizer design. This could be benefici
 - Removed the resonance control of the second filter, it should only control the first in the series.
 - Reworked and added Filter Envelope module
     - A/D/R with 1-20000 ms range
+- Updated [pd reference] of every module
+
+- Reworked the cutoff logic in the Low-Pass Filter module
+- Implemented Filter Envelope modulation to Low-Pass Filter module
+
+
+### Iteration v0.3
+- p6_voice plays a single voice (monophonic) with the following modules:
+    - oscillator_1
+    - oscillator_2
+    - mixer
+    - low-pass filter
+    - filter_envelope (updated filter frequencty logic and added envelope modulation)
+    - amplifier_envelope
+- Regular MIDI 'notein' with 'noteoff' through amp envelope.
 
 
 #### Reflections and considerations
-There is pops and glitches in sound if turning knobs when note is playing (specifically amp env amount). Consider adding lines to smooth parameter changes (slew/lag).
+There is pops and glitches in sound if turning knobs when note is playing (specifically amp env amount). Consider adding lines to smooth parameter changes (slew/lag). With iteration v0.3, the synthesizer finally starts to feel expressive, although it is still monophonic, and played with a small MIDI keyboard. The next step is to add polyphony and MPE support.
