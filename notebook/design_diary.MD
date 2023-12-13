@@ -45,7 +45,7 @@ The p6_voice.pd sketch is acting both as the start of a "voice card" and also th
 
 - Moved 'bit' selector from individual modules to global p6_voice
 - Exchanged else/buttons (used for aesthetic purposes) with vanilla toggles, because of initialization issues.
-- Reworked Mixer module
+- Reworked and added Mixer module
 - Moved Sub-Oscillator to Oscillator 1 module for simplicity
 - Added volume adjustment to mixer (sub-oct too low, noise too high)
 - Swapped else/mix4~ with vanilla [*~] since linear volume control was preferred
@@ -56,9 +56,33 @@ The p6_voice.pd sketch is acting both as the start of a "voice card" and also th
     - Implemented Keyboard Tracking (Off/Half/Full) with C4 as center frequency
 - Added Low-Pass Filter to p6_voice
 
+- Undid the volume adjustments to mixer after low-pass filter was added. The energy was in the (now tamed) high frequencies.
+    - It seems that the preset output volume appear balanced when low-pass filtering is added, except when "open".
+
 #### Reflections and considerations
 I need to make a block diagram of the synthesizer design. This could be beneficial to me in the design process as well. At a later stage, a diagram is  needed for the complete instrument as well. Low Resonance takes the energy out of the sound. Look into that. The externals part of the "Pure Data: Electronic Music and Sound Design" book might address and/or solve this.
 
 ---
 
 ## 13/12/2023
+- Added color-coding to inlets (yellow), receives (green) and outlets (purple) in p6_voice.pd
+- Removed "hard-wired" inlets to modules, which should be constant. Only inlets controlling parameters (knobs/buttons) used.
+- ** Found a bug with the Env_amount range (+/- 4 oct), which fades out the sound(?!) if every knob is at max.
+    - Temporarily fix på reducing the range to +/- 3 oct
+
+- Reworked and added the Amplifier Envelope module
+    - Implemented Env Amount and Velocity modulation
+
+
+### Iteration v0.2
+- p6_voice plays a single voice (monophonic) with the following modules:
+    - oscillator_1
+    - oscillator_2
+    - mixer
+    - low-pass filter (mo filter_envelope modulation yet)
+    - amplifier_envelope
+- Regular MIDI 'notein' with 'noteoff' through amp envelope.
+
+
+#### Reflections and considerations
+There is pops and glitches in sound if turning knobs when note is playing (specifically amp env amount). Consider adding lines to smooth parameter changes (slew/lag). 
