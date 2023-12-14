@@ -1,4 +1,4 @@
-#N canvas 48 120 1846 968 12;
+#N canvas 241 157 1846 968 12;
 #X obj 488 796 out~;
 #X obj 114 205 ./p6_modules/oscillator_1;
 #X obj 114 379 ./p6_modules/oscillator_2;
@@ -41,7 +41,7 @@
 #X floatatom 517 52 5 0 127 0 - - - 0;
 #N canvas 121 146 450 443 init 0;
 #X obj 135 61 loadbang;
-#X msg 135 85 \; o1_sync 0 \; o2_lf 0 \; o2_keyb 1 \; o1_lvl 127 \; o2_lvl 63 \; subosc_lvl 63 \; lpf_cut 64 \; lpf_res 42 \; lpf_env 76 \; lpf_vel 0 \; amp_amount 100 \; amp_vel 0 \; master_out set 0.6 \;;
+#X msg 135 85 \; o1_sync 0 \; o2_lf 0 \; o2_keyb 1 \; o1_lvl 127 \; o2_lvl 63 \; subosc_lvl 63 \; lpf_cut 64 \; lpf_res 42 \; lpf_env 76 \; lpf_vel 0 \; amp_amount 100 \; amp_vel 0 \; master_vol 0.6 \;;
 #X connect 0 0 1 0;
 #X restore 1647 115 pd init;
 #X obj 459 336 s~ subosc;
@@ -74,13 +74,14 @@
 #X obj 1127 357 r filter_D;
 #X obj 1295 357 r filter_S;
 #X obj 1404 357 r filer_R;
-#X obj 113 535 p6_modules/master_vol;
-#X obj 113 667 s~ master;
+#X obj 114 554 p6_modules/master_vol;
+#X obj 114 686 s~ master;
 #X obj 1091 790 r~ lpf;
 #X obj 1151 790 r~ amp_env;
 #X obj 1115 834 *~;
 #X obj 1115 878 s~ voices;
 #X obj 488 773 r~ master;
+#X obj 114 532 r master_vol;
 #X connect 1 0 4 0;
 #X connect 1 1 25 0;
 #X connect 2 0 3 0;
@@ -130,3 +131,4 @@
 #X connect 58 0 59 1;
 #X connect 59 0 60 0;
 #X connect 61 0 0 0;
+#X connect 62 0 55 0;
