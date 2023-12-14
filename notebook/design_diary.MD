@@ -38,7 +38,7 @@ The p6_voice.pd sketch is acting both as the start of a "voice card" and also th
 - Started working on the GUI layout and send/receive architecture of signals in the p6_voice.pd sketch
 
 
-### Iteration v0.1
+### Iteration v0.1 – Oscillators
 - p6_voice plays a single voice (monophonic) with the following modules:
     - oscillator_1
     - oscillator_2
@@ -77,7 +77,7 @@ I need to make a block diagram of the synthesizer design. This could be benefici
     - A/D/R with 1-20000 ms range
 
 
-### Iteration v0.2
+### Iteration v0.2 – Basic Single Voice
 - p6_voice plays a single voice (monophonic) with the following modules:
     - oscillator_1
     - oscillator_2
@@ -99,13 +99,13 @@ I need to make a block diagram of the synthesizer design. This could be benefici
 - Implemented Filter Envelope modulation to Low-Pass Filter module
 
 
-### Iteration v0.3
+### Iteration v0.3 – Single Voice
 - p6_voice plays a single voice (monophonic) with the following modules:
     - oscillator_1
     - oscillator_2
     - mixer
     - low-pass filter
-    - filter_envelope (updated filter frequencty logic and added envelope modulation)
+    - filter_envelope (updated filter frequency logic and added envelope modulation)
     - amplifier_envelope
 - Regular MIDI 'notein' with 'noteoff' through amp envelope.
 
@@ -117,9 +117,44 @@ There is pops and glitches in sound if turning knobs when note is playing (speci
 
 ## 14/12/2023
 - Added Master Volume module
+- Shelved an instance in a 'MIDI' folder, to mark the transition to MPE
+
+- Implemented MPE through the pd_mpe external (still monophonic patch)
+    - Reworked and renamed the [mpeTest] abstraction from *pd_mpe* to [mpe_voice]
+        - Added copyright notice
+    - Added sends for each parameter
+- Added pitchbend support, with global PB range selector
+- Added [glide2pitchbend] abstraction for glide control of frequency
+- Tested 'slide' and 'press' (aftertouch) modulation
+    - Slide: [-64, 63]
+    - Press: [0, 127]
+- Added preliminary modulation input for lpf cutoff frequency (to not override knob, but modulate relative to its position)
+    - This has to be reworked for every parameter to be modulated
+
+
+### Iteration v0.4 – MPE
+- p6_voice is MPE-enabled and plays a single voice (monophonic) with the following modules:
+    - oscillator_1
+    - oscillator_2
+    - mixer
+    - low-pass filter
+    - filter_envelope
+    - amplifier_envelope
+    - master_volume
+- Tested with a ROLI Seaboard Block
+- Glide simulates pitchbend
+- Slide modulates Osc1 Pulse Width
+    - Overrides knob
+- Press modulates lpf cutoff frequency
+    - Modulates relative to knob (not really, but relative to the modules inlet)
+
 
 #### Reflections and considerations
-I need to implement MPE objects into my synthesizer patch, as in map the individual MPE voices' output to my synthesizer parameters. First up is the 'glide', analogous to pitch-bend, which is a core functionality in MPE. The 'noteoff' architecture needs to adapt top the MPE object as well. NB! The latest pd_mpe git activity was committed on Apr 29, 2019. The current build is for win/mac 'i386;x86_64' CPU architectures. This build does not support the new Apple M1/M2/M3 chips, which is in the UiO MCT Synthroom. Considering making a build for the 'arm64e' CPU architecture.
+I need to implement MPE objects into my synthesizer patch, as in map the individual MPE voices' output to my synthesizer parameters. First up is the 'glide', analogous to pitch-bend, which is a core functionality in MPE. The 'noteoff' architecture needs to adapt top the MPE object as well.
+
+Pitchbend control is added to make use of the MPE 'glide' parameter. To enable for 'glide' modulation of other parameters as well, a [glide2pitchbend] abstraction was added. The other MPE control parameters 'slide' and 'press' (aftertouch) is also tested. Cutoff modulation works fine, Pulse Width modulation might have som artifacts. Still considering a [line] object to smooth parameter changes.
+
+NB! The latest pd_mpe git activity was committed on Apr 29, 2019. The current build is for win/mac 'i386;x86_64' CPU architectures. This build does not support the new Apple M1/M2/M3 chips, which is in the UiO MCT Synthroom. Considering making a build for the 'arm64e' CPU architecture.
 
 pd error log:
 /Users/kristian/Documents/Pd/externals/mpe/mpe.pd_darwin:dlopen(/Users/kristian/Documents/Pd/externals/mpe/mpe.pd_darwin, 0x000A): tried: '/Users/kristian/Documents/Pd/externals/mpe/mpe.pd_darwin' (mach-o file, but is an incompatible architecture (have (x86_64), need (arm64e)))
