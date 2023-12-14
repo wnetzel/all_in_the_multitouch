@@ -112,3 +112,8 @@ I need to make a block diagram of the synthesizer design. This could be benefici
 
 #### Reflections and considerations
 There is pops and glitches in sound if turning knobs when note is playing (specifically amp env amount). Consider adding lines to smooth parameter changes (slew/lag). With iteration v0.3, the synthesizer finally starts to feel expressive, although it is still monophonic, and played with a small MIDI keyboard. The next step is to add polyphony and MPE support.
+
+---
+
+## 14/12/2023
+- Added Master Volume module
