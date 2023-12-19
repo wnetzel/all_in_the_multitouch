@@ -182,8 +182,10 @@ mpe: can't load library
     - The input scaling is happening in the GUI patch.
     - The GUI module patches are "global", on the layout of the main synthesizer patch.
     - The logic module patches are "local" per voice, to be called in each clone of the voicecard patch.
-- Reworked Oscillator 1 (GUI + logic)
+- Reworked Oscillator 1 (separated GUI + logic)
 - Started with a [pd voicecard] subpatch, which later will be saved as a separate file.
+- Reworked Oscillator 2 (separated GUI + logic)
+- Reworked Mixer (separated GUI + logic)
 
 #### Reflections and considerations
 There has been a bug in the previous iterations, where the [r~ osc2] inlet was not connected to the sync-input of the oscillator on Oscillator 1. Because the Oscillator 2 is halfway up in the mix by default, I didn't notice the bug. Considered fixing for iteration 0.3 and 0.4, but decided on not to temper with previous iterations after they were finished. The bug will be fixed in iteration 0.5.
