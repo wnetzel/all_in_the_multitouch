@@ -169,6 +169,12 @@ mpe: can't load library
 - Restructuring Oscillator 1 + Oscillator 2
 
 
+### Iteration v0.4.1 – MPE (+ sync)
+- Bugfix to Iteration v0.4
+    - Sync input of Oscillator 1 is now connected to [r~ osc2]
+- Restructured the Oscillator 1 + 2 modules
+
 
 #### Reflections and considerations
 There has been a bug in the previous iterations, where the [r~ osc2] inlet was not connected to the sync-input of the oscillator on Oscillator 1. Because the Oscillator 2 is halfway up in the mix by default, I didn't notice the bug. Considered fixing for iteration 0.3 and 0.4, but decided on not to temper with previous iterations after they were finished. The bug will be fixed in iteration 0.5.
+- Should Oscillator 2 level attenuate the signal to Oscillator 1 when in Sync mode?
