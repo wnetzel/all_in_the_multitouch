@@ -68,7 +68,8 @@ I need to make a block diagram of the synthesizer design. This could be benefici
 
 ## 13/12/2023
 - Added color-coding to inlets (yellow), receives (green) and outlets (purple) in p6_voice.pd
-- Removed "hard-wired" inlets to modules, which should be constant. Only inlets controlling parameters (knobs/buttons) used.
+- Removed "hard-wired" inlets to modules, the connection between modules, which should be constant.
+    - Only inlets controlling parameters (knobs/buttons) are now used.
 - ** Found a bug with the Env_amount range (+/- 4 oct), which fades out the sound(?!) if every knob is at max.
     - Temporarily fix på reducing the range to +/- 3 oct
 
@@ -172,8 +173,17 @@ mpe: can't load library
 ### Iteration v0.4.1 – MPE (+ sync)
 - Bugfix to Iteration v0.4
     - Sync input of Oscillator 1 is now connected to [r~ osc2]
-- Restructured the Oscillator 1 + 2 modules
+- Restructured the Oscillator 1 + 2 modules with abstractions per function
 
+
+- Started the process of separating the GUI from the logic of modules
+    - Added a _GUI folder containing the GUI patches with the logic removed.
+    - The old patches, is now without GUI and graph-on-parent, with just the logic.
+    - The input scaling is happening in the GUI patch.
+    - The GUI module patches are "global", on the layout of the main synthesizer patch.
+    - The logic module patches are "local" per voice, to be called in each clone of the voicecard patch.
+- Reworked Oscillator 1 (GUI + logic)
+- Started with a [pd voicecard] subpatch, which later will be saved as a separate file.
 
 #### Reflections and considerations
 There has been a bug in the previous iterations, where the [r~ osc2] inlet was not connected to the sync-input of the oscillator on Oscillator 1. Because the Oscillator 2 is halfway up in the mix by default, I didn't notice the bug. Considered fixing for iteration 0.3 and 0.4, but decided on not to temper with previous iterations after they were finished. The bug will be fixed in iteration 0.5.
