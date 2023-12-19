@@ -107,7 +107,6 @@
 #X obj 256 66 cnv 19 64 24 empty empty empty 20 12 0 12 #c6ffc7 #404040 0;
 #X obj 236 68 r note_glide;
 #X obj 388 66 cnv 19 64 24 empty empty empty 20 12 0 12 #c6ffc7 #404040 0;
-#X obj 376 68 r pw_range;
 #X obj 254 272 cnv 19 64 24 empty empty empty 20 12 0 12 #c6feff #404040 0;
 #N canvas 406 485 874 522 glide2pitchbend 0;
 #X obj 463 182 - 8192;
@@ -152,12 +151,13 @@
 #X obj 506 102 tgl 19 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000 0 1;
 #X obj 518 63 cnv 19 64 24 empty empty empty 20 12 0 12 #c6ffc7 #404040 0;
 #X obj 506 66 r glide2pb;
-#X connect 2 0 6 1;
-#X connect 4 0 6 2;
-#X connect 6 0 7 0;
-#X connect 8 0 6 0;
-#X connect 9 0 6 3;
-#X connect 11 0 9 0;
+#X obj 376 68 r pb_range;
+#X connect 2 0 5 1;
+#X connect 5 0 6 0;
+#X connect 7 0 5 0;
+#X connect 8 0 5 3;
+#X connect 10 0 8 0;
+#X connect 11 0 5 2;
 #X restore 566 621 pd voice_common;
 #X obj 1110 857 s cutoff_mod;
 #X obj 1110 833 / 8;

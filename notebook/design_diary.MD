@@ -161,3 +161,14 @@ pd error log:
 /Users/kristian/Documents/Pd/externals/mpe/mpe.pd_darwin:dlopen(/Users/kristian/Documents/Pd/externals/mpe/mpe.pd_darwin, 0x000A): tried: '/Users/kristian/Documents/Pd/externals/mpe/mpe.pd_darwin' (mach-o file, but is an incompatible architecture (have (x86_64), need (arm64e)))
 mpe: can't load library
 
+---
+
+## 19/12/2023
+- Bugfix: Connecting [r~ osc2] to sync input of Oscillator 1
+- Bugfix: MPE glide / pb_range typo
+- Restructuring Oscillator 1 + Oscillator 2
+
+
+
+#### Reflections and considerations
+There has been a bug in the previous iterations, where the [r~ osc2] inlet was not connected to the sync-input of the oscillator on Oscillator 1. Because the Oscillator 2 is halfway up in the mix by default, I didn't notice the bug. Considered fixing for iteration 0.3 and 0.4, but decided on not to temper with previous iterations after they were finished. The bug will be fixed in iteration 0.5.
