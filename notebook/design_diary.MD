@@ -197,3 +197,21 @@ There has been a bug in the previous iterations, where the [r~ osc2] inlet was n
 - Reworked Low-Pass Filter (separated GUI + logic)
 - Reworked Filter Envelope (separated GUI + logic)
 - Reworked Amplifier Envelope (separated GUI + logic)
+
+- Because of the local $0-prefix to send/receive objects, I have to incorporate the modules logic to the voicecard abstraction.
+
+- Reworked the voicecard abstraction to not call the synthesizer module logic abstractions, but copy/pasted this logic into subpatches instead.
+- Added polyphonic support to the synthesizer!
+
+
+### Iteration v0.5 – Polyphony (global modulation)
+- The synthesizer now works with polyphonic note input
+- Every voice currently modulates every other voice (except pitch glide)
+    - Polyphonic synthesizer with "monophonic modulation"
+    - The modulation is currently done in the GUI module abstractions, and needs to be moved to the logic subpatches of the voicecard abstraction.
+
+
+#### Reflections and considerations
+The synthesizer is now polyphonic, which brings up another consideration regarding the modulation. I've thought about that it is not necessary to have visual feedback of the knob of a parameters modulation. But now I see that it is not wanted, as the modulation needs to be individual per voice. There might be wish for global modulation through a future LFO, but that will be reflected upon at a later stage. For now, I have to move the modulation of parameters to the synthesizer module logic inside the voicecard.pd abstraction. This also means that there will be need for a separate scaling of the modulation input range, as the scaling is now happening in the GUI patch to make the knobs work in higher resolution than the MIDI 7-bit range. (This was already an conscious choice in making the synthesizer more future-proof and compatible with higher resolution MIDI 2.0, OSC or 14-bit CC.) The scaled modulation input signal will be added/subtracted to the "knob" control signal. There should possibly also be a "depth" control per modulation source or destination.
+
+Considering making a matrix for modulation routing!
