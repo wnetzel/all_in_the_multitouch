@@ -190,3 +190,8 @@ mpe: can't load library
 #### Reflections and considerations
 There has been a bug in the previous iterations, where the [r~ osc2] inlet was not connected to the sync-input of the oscillator on Oscillator 1. Because the Oscillator 2 is halfway up in the mix by default, I didn't notice the bug. Considered fixing for iteration 0.3 and 0.4, but decided on not to temper with previous iterations after they were finished. The bug will be fixed in iteration 0.5.
 - Should Oscillator 2 level attenuate the signal to Oscillator 1 when in Sync mode?
+
+---
+
+## 20/12/2023
+- Reworked Low-Pass Filter (separated GUI + logic)
