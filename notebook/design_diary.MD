@@ -196,3 +196,4 @@ There has been a bug in the previous iterations, where the [r~ osc2] inlet was n
 ## 20/12/2023
 - Reworked Low-Pass Filter (separated GUI + logic)
 - Reworked Filter Envelope (separated GUI + logic)
+- Reworked Amplifier Envelope (separated GUI + logic)
