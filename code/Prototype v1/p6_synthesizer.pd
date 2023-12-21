@@ -20,13 +20,13 @@
 #X connect 6 0 0 0;
 #X restore 1646 59 pd bit_resolution;
 #X obj 697 204 ./GUI/mixer;
-#N canvas 678 509 506 443 init 0;
+#N canvas 1186 448 506 443 init 0;
 #X obj 135 61 loadbang;
 #X obj 344 62 loadbang;
 #X msg 344 124 12;
 #X obj 364 88 inlet;
 #X obj 344 148 s pb_range;
-#X msg 135 85 \; o1_sync_I 0 \; o2_lf_I 0 \; o2_keyb_I 1 \; o1_lvl_I 127 \; o2_lvl_I 63 \; so_lvl_I 63 \; lpf_cut_I 64 \; lpf_res_I 42 \; lpf_env_I 76 \; lpf_vel_I 0 \; amp_env_I 100 \; amp_vel_I 0 \; master_vol 0.8 \; pd_out set 0.6 \; pb_init 12 \; glide2pb 1 \;;
+#X msg 135 85 \; o1_sync_I 0 \; o1_shape_I 94 \; o2_lf_I 0 \; o2_keyb_I 1 \; o1_lvl_I 127 \; o2_lvl_I 63 \; so_lvl_I 63 \; n_lvl_I 19 \; lpf_cut_I 64 \; lpf_res_I 42 \; lpf_env_I 76 \; lpf_vel_I 0 \; amp_env_I 100 \; amp_vel_I 0 \; master_vol 0.8 \; pd_out set 0.6 \; pb_init 12 \; glide2pb 1 \;;
 #X connect 0 0 5 0;
 #X connect 1 0 2 0;
 #X connect 2 0 4 0;
@@ -100,7 +100,7 @@
 #X obj 1262 686 s amp_D_O;
 #X obj 1333 686 s amp_S_O;
 #X obj 1404 686 s amp_R_O;
-#X obj 477 602 cnv 19 256 96 empty empty Engine 96 12 0 16 #e3c6ff #606060 0;
+#X obj 477 602 cnv 19 256 96 empty empty Engine 96 16 0 16 #e3c6ff #606060 0;
 #N canvas 266 317 878 439 synth_engine 0;
 #X obj 108 85 mpe;
 #X obj 108 109 route 1;
