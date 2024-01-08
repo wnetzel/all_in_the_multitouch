@@ -215,3 +215,48 @@ There has been a bug in the previous iterations, where the [r~ osc2] inlet was n
 The synthesizer is now polyphonic, which brings up another consideration regarding the modulation. I've thought about that it is not necessary to have visual feedback of the knob of a parameters modulation. But now I see that it is not wanted, as the modulation needs to be individual per voice. There might be wish for global modulation through a future LFO, but that will be reflected upon at a later stage. For now, I have to move the modulation of parameters to the synthesizer module logic inside the voicecard.pd abstraction. This also means that there will be need for a separate scaling of the modulation input range, as the scaling is now happening in the GUI patch to make the knobs work in higher resolution than the MIDI 7-bit range. (This was already an conscious choice in making the synthesizer more future-proof and compatible with higher resolution MIDI 2.0, OSC or 14-bit CC.) The scaled modulation input signal will be added/subtracted to the "knob" control signal. There should possibly also be a "depth" control per modulation source or destination.
 
 Considering making a matrix for modulation routing!
+
+---
+
+## 21/12/2023
+- Moved the modulation logic from the main patch into the voicecard.pd abstraction to make the modulation polyphonic (individual modulation per voice)
+- Added a small modulation matrix
+    - Sources: Slide / Press
+    - Destinations: Off / Osc1 PW / LPF Cutoff
+    - Added depth control for each modulation (source)
+
+### Iteration v1 – It's alive!
+- A 6-voice polyphonic synthesizer with MPE and per-voice modulation!
+- There is a small modulation matrix for flexible modulation routing between a few sources and destinations
+- Synth modules:
+    - oscillator_1
+    - oscillator_2
+    - mixer
+    - low-pass filter
+    - filter_envelope
+    - amplifier_envelope
+
+---
+
+## 04/01/2024
+
+#### Reflections and considerations
+The first "official" v1-iteration is tailored to the ROLI Blocks. This explains the Slide/Press naming of modulation sources, but which easily can be interchanged with the y-axis control and surface area control parameters of the TouchKeys. *The naming convention should probably be changed in a later iteration, to more "neutral" controller-agnostic labels.*
+
+The Modulation Matrix is great for testing individual parameters, both sources and destinations for modulation. It is also "performer-friendly" in that it is easy to route/map the modulation sources to a synthesizer parameter and set its depth. However, this negates the possibility of having one modulation source affect multiple destinations. *The modulation matrix affords One-To-One and Many-to-One mapping strategies, but not One-to-Many*. One solution to this could be to have two or more instances of each source (with individual depth-knobs). This could work with only a few modulation sources (or DoF of the instrument) in use, but I suspect it would become messy when adding more modulation sources. This limitation furthermore hinders the making of a higher-level intermediate abstract mapping layer. Such an intermediate layer would be beneficial for the designer--performer, enabling custom instrument iterations where a saved pd patch instance of the synthesizer could be the equivalent of a synthesizer sound patch/preset. Such an intermediate layer would be "messier" to implement, aesthetically speaking, than a transparent and clean modulation matrix, and should at least be placed in a dedicated sub-patch "environment". A modulation matrix is as mentioned a great tool when designing and prototyping new features. As for the performer-friendliness, I think this would make the instrument more available to a wide selection of performer--users, enabling instant, although limited, expressivity, by affording the possibility to set the modulation matrix to their individual preferences. It is also easy to test different ideas out, in a "one-dimensional" sense, with the restriction of using a source only once, while any destination parameter potentially could be used for every source in use.
+
+---
+
+## 08/01/2024
+
+#### Reflections and considerations
+The modulation logic needs to be changed so that the response is either unipolar or bipolar according to the design of the control source parameter. *As of now, the slide control modulation (which by default is routed to Oscillator 1 PW) is unipolar, i.e., only adding positive values to the modulation.* The slide parameter feels on the other hand to be inherently bipolar, centering around a middle value (64), with the possibility to slide values up or down. As of now, where the slide control only adds positive values to the PW modulation, this only affords a full modulation range if the Osc1 PW knob is set to 0. (Which in turn would "jump" the PW modulation to around the middle value for each time a note is pressed, if the depth is set to 100%.) Instead, the slide control parameter signal should be transformed to center around 0 [-64, 63], to be a bipolar modulation source. *The press modulation on the other hand (which by default "opens" up the low-pass filter by increasing the cutoff frequency), is inherently unipolar and feels right as it currently is set up.* The default value of a press is 0, and pressing harder (using the polyphonic aftertouch CC) adds to this value.
+
+**Care and consideration has to be taken in setting up the different control parameters and treating their data before routed to their modulation destination, either unipolar or bipolar.** To implement this, I'm making sub-patches to transform the bipolar control sources from [0, 127] to [-64, 63]. The unipolar control sources are used as is, as adding the value of the knob controlling the destination synthesizer parameter with the control source value was already the design choice used. This addition will (when depth is set to 100%) in effect range from subtracting 50% to adding 50% for bipolar modulation, and range from adding 0% to 100% for unipolar modulation.
+
+Regarding the actual range of the modulation, every synthesizer parameter value gets clipped to a certain range depending on the type of parameter. This means that, e.g., having a low-pass filter frequency already set to max before being modulated by the press source would not add more or otherwise affect the frequency. In a future bipolar modulation design, the Osc1 PW knob set to the minimum value before being modulated negatively by the slide source would similarly not affect the PW --- only and upwards slide adding a positive value would. 
+
+I could consider adding the depth ranging from [-1, 1] instead of [0, 1] to make the unipolar modulation be negative as well. But on the other hand, this negative-to-positive modulation possibility is already a hard-coded design feature of the ENV AMOUNT ot the filter(s) and amplifier envelope. Maybe keeping the unipolar positive, and otherwise only letting the bipolar sources modulate "negatively" would more than suffice.
+
+---
+
