@@ -296,6 +296,13 @@ I could consider adding the depth ranging from [-1, 1] instead of [0, 1] to make
 - Added Strike modulation source (Note-On Velocity)
 - Added Lift modulation source (Note-Off Velocity)
 
+- Added logic for individual CC input per voice for modulation
+- Reworked the Glide to include Pitch Glide and Vibrato from the TouchKeys
+    - Renamed old Glide to 'Pitch Glide/Vibrato'
+- Added a new Glide control source (TouchKeys X-axis: CC 75)
+- Added a new Area control source (TouchKeys Contact Area: CC 76)
+- Added a new Distance control source (TouchKeys 2-Finger Distance: CC 77)
+
 
 #### Reflections and considerations
 When modulating the (Filter) Envelope Attack, nothing happens. As change in the attack length will not affect the attack curve after a note has triggered. Is this because of the ADSR implementation in the [else/adsr~] object? When modulating the (Filter) Envelope Decay, there is some unexpected behavior including what sounds like re-triggering of envelope. This happens when instantly applying a lot of pressure (from the Press source) to make the decay time longer. If you loosen up the pressure (and probably further when you (involuntarily) press harder again) something akin to a re-trigger occurs, also making the decay curve of the envelope stuck in a fixed position – which sounds like it has arrived at a higher sustain level than what is set. This is somewhat also affected by the release value in some unknown way. Modulating the (Filter) Envelope Sustain works as expected, affecting the Cutoff Frequency (according to the set Env Amount). Even though the other temporal parameters (Attack/Decay) have their quirks, modulating the (Filter) Envelope Release works as expected. The same observations apply to the Amplifier Envelope, except: When modulating the (Amplifier) Envelope Sustain, there are artifacts introduced to the sound. This can be tamed by using the [vline] object, but needs a considerable length to be eliminated. An compromise of 150 ms is used.
