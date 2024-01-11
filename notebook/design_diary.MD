@@ -291,10 +291,13 @@ I could consider adding the depth ranging from [-1, 1] instead of [0, 1] to make
 - Finished implementing all modulation destinations to the Press control source
 - Finalized the Slide control modulation
 - Added the High-Pass Filter module
+- Fixed temporal modulation (Envelope A/D/R) destinations by removing the logarithmic scaling of modulation signal
 
 
 #### Reflections and considerations
 When modulating the (Filter) Envelope Attack, nothing happens. As change in the attack length will not affect the attack curve after a note has triggered. Is this because of the ADSR implementation in the [else/adsr~] object? When modulating the (Filter) Envelope Decay, there is some unexpected behavior including what sounds like re-triggering of envelope. This happens when instantly applying a lot of pressure (from the Press source) to make the decay time longer. If you loosen up the pressure (and probably further when you (involuntarily) press harder again) something akin to a re-trigger occurs, also making the decay curve of the envelope stuck in a fixed position – which sounds like it has arrived at a higher sustain level than what is set. This is somewhat also affected by the release value in some unknown way. Modulating the (Filter) Envelope Sustain works as expected, affecting the Cutoff Frequency (according to the set Env Amount). Even though the other temporal parameters (Attack/Decay) have their quirks, modulating the (Filter) Envelope Release works as expected. The same observations apply to the Amplifier Envelope, except: When modulating the (Amplifier) Envelope Sustain, there are artifacts introduced to the sound. This can be tamed by using the [vline] object, but needs a considerable length to be eliminated. An compromise of 150 ms is used.
+
+Update: There was a considerable improvement when removing the linear to logarithmic scaling of the modulation signal. The Attack modulation is now working. Still, on the Decay modulation, there will be a sudden dip after the otherwise working modulated (prolonged) decay curve before landing on the sustain level. So even if there is a new decay curve, it will end with a dip down to the sustain level. (This dip might be in the curve of the Decay knob position.)
 
 Modulating certain parameters introduces artifacts to the sound, which can be controlled with using a [vline] object (a slew/lag generator) to smooth out the changes. This however, will introduce some (fading) latency to the modulation or knob turn. If the slewing has to be long, this would affect the responsiveness of the modulation control. *Where is the threshold of balancing the audio quality with the perceived control intimacy?*
 
