@@ -249,6 +249,7 @@ The Modulation Matrix is great for testing individual parameters, both sources a
 
 ## 08/01/2024
 
+
 #### Reflections and considerations
 The modulation logic needs to be changed so that the response is either unipolar or bipolar according to the design of the control source parameter. *As of now, the slide control modulation (which by default is routed to Oscillator 1 PW) is unipolar, i.e., only adding positive values to the modulation.* The slide parameter feels on the other hand to be inherently bipolar, centering around a middle value (64), with the possibility to slide values up or down. As of now, where the slide control only adds positive values to the PW modulation, this only affords a full modulation range if the Osc1 PW knob is set to 0. (Which in turn would "jump" the PW modulation to around the middle value for each time a note is pressed, if the depth is set to 100%.) Instead, the slide control parameter signal should be transformed to center around 0 [-64, 63], to be a bipolar modulation source. *The press modulation on the other hand (which by default "opens" up the low-pass filter by increasing the cutoff frequency), is inherently unipolar and feels right as it currently is set up.* The default value of a press is 0, and pressing harder (using the polyphonic aftertouch CC) adds to this value.
 
@@ -259,4 +260,40 @@ Regarding the actual range of the modulation, every synthesizer parameter value 
 I could consider adding the depth ranging from [-1, 1] instead of [0, 1] to make the unipolar modulation be negative as well. But on the other hand, this negative-to-positive modulation possibility is already a hard-coded design feature of the ENV AMOUNT ot the filter(s) and amplifier envelope. Maybe keeping the unipolar positive, and otherwise only letting the bipolar sources modulate "negatively" would more than suffice.
 
 ---
+
+## 10/01/2024
+- Shifted the values of the slide modulation source from [0, 127] to [-64, 63] to make it bipolar
+- Expanded the modulation matrix destinations, now including:
+    - [OFF]
+    - Osc1 Shape (Implemented)
+    - Osc1 PW (Implemented)
+    - Osc2 Shape (Implemented)
+    - Osc2 PW (Implemented)
+    - Mixer Osc1 Level (Implemented)
+    - Mixer Osc2 Level (Implemented)
+    - Mixer SubOct Level (Implemented)
+    - Mixer Noise Level (Implemented)
+    - LPF Frequency (Implemented)
+    - LPF Resonance
+    - Filter Envelope Attack
+    - Filter Envelope Decay
+    - Filter Envelope Sustain
+    - Filter Envelope Release
+    - Amplifier Envelope Attack
+    - Amplifier Envelope Decay
+    - Amplifier Envelope Sustain
+    - Amplifier Envelope Release
+- Started implementing the modulation destination to the Press control source, according to the list above.
+
+---
+
+## 11/01/2024
+- Finishing implementing all modulation destinations to the Press control source
+- Implemented all modulation destinations to the Slide control source
+
+
+#### Reflections and considerations
+When modulating the (Filter) Envelope Attack, nothing happens. As change in the attack length will not affect the attack curve after a note has triggered. Is this because of the ADSR implementation in the [else/adsr~] object? When modulating the (Filter) Envelope Decay, there is some unexpected behavior including what sounds like re-triggering of envelope. This happens when instantly applying a lot of pressure (from the Press source) to make the decay time longer. If you loosen up the pressure (and probably further when you (involuntarily) press harder again) something akin to a re-trigger occurs, also making the decay curve of the envelope stuck in a fixed position – which sounds like it has arrived at a higher sustain level than what is set. This is somewhat also affected by the release value in some unknown way. Modulating the (Filter) Envelope Sustain works as expected, affecting the Cutoff Frequency (according to the set Env Amount). Even though the other temporal parameters (Attack/Decay) have their quirks, modulating the (Filter) Envelope Release works as expected. The same observations apply to the Amplifier Envelope, except: When modulating the (Amplifier) Envelope Sustain, there are artifacts introduced to the sound. This can be tamed by using the [vline] object, but needs a considerable length to be eliminated. An compromise of 150 ms is used.
+
+Modulating certain parameters introduces artifacts to the sound, which can be controlled with using a [vline] object (a slew/lag generator) to smooth out the changes. This however, will introduce some (fading) latency to the modulation or knob turn. If the slewing has to be long, this would affect the responsiveness of the modulation control. *Where is the threshold of balancing the audio quality with the perceived control intimacy?*
 

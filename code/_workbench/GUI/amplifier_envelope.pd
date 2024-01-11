@@ -82,12 +82,12 @@
 #X text 146 103 Rescale: 0 to 1;
 #X obj 136 53 inlet;
 #X obj 137 211 outlet;
-#X obj 137 123 expr ($f1 - $f2) / $f2 + 1;
 #X obj 316 93 r bit;
+#X obj 137 123 expr $f1 / $f2;
 #X connect 0 0 3 0;
-#X connect 2 0 4 0;
-#X connect 4 0 0 0;
-#X connect 5 0 4 1;
+#X connect 2 0 5 0;
+#X connect 4 0 5 1;
+#X connect 5 0 0 0;
 #X restore 547 51 pd rescale_S;
 #N canvas 1293 547 450 300 lin2log_R 0;
 #X obj 124 33 inlet;
