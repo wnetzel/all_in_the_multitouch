@@ -292,6 +292,9 @@ I could consider adding the depth ranging from [-1, 1] instead of [0, 1] to make
 - Finalized the Slide control modulation
 - Added the High-Pass Filter module
 - Fixed temporal modulation (Envelope A/D/R) destinations by removing the logarithmic scaling of modulation signal
+- Made the Glide control (hard-coded to pitch-bend) selectable as a small part of the Modulation Matrix: Off / Pitch-Bend
+- Added Strike modulation source (Note-On Velocity)
+
 
 
 #### Reflections and considerations
