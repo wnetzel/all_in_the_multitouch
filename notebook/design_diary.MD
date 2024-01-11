@@ -288,8 +288,9 @@ I could consider adding the depth ranging from [-1, 1] instead of [0, 1] to make
 ---
 
 ## 11/01/2024
-- Finishing implementing all modulation destinations to the Press control source
-- Implemented all modulation destinations to the Slide control source
+- Finished implementing all modulation destinations to the Press control source
+- Finalized the Slide control modulation
+- Added the High-Pass Filter module
 
 
 #### Reflections and considerations
@@ -297,3 +298,4 @@ When modulating the (Filter) Envelope Attack, nothing happens. As change in the 
 
 Modulating certain parameters introduces artifacts to the sound, which can be controlled with using a [vline] object (a slew/lag generator) to smooth out the changes. This however, will introduce some (fading) latency to the modulation or knob turn. If the slewing has to be long, this would affect the responsiveness of the modulation control. *Where is the threshold of balancing the audio quality with the perceived control intimacy?*
 
+I might sometimes get «in the zone» when designing or implementing features in the synthesizer. I might intuitively get an idea of how to add or fix a feature, without necessarily having a concious answer to why (just yet). If it doesn’t work, I will then analyze why it did not and try to fix it. Or change the approach. Even if it works, I will find out why it did, to learn from it. This experience reminds me of being «in the zone» when performing and improvising. You don’t necessarily think consciously about which scale or which rhythmical motifs to use. There is an intuitive approach made possible by all the hours of practice and experience in the craft. When this happens during the design time, I like to think that this is because my knowledge of and experience with synthesizers are elevating my more limited programming experience.
