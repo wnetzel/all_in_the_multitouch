@@ -5,11 +5,11 @@
     <Segment>
       <Properties>
         <VALUE name="outputPort" val="0"/>
-        <VALUE name="mode" val="1"/>
+        <VALUE name="mode" val="3"/>
         <VALUE name="channelMask" val="65535"/>
         <VALUE name="noteMin" val="12"/>
         <VALUE name="noteMax" val="127"/>
-        <VALUE name="outputChannelLowest" val="0"/>
+        <VALUE name="outputChannelLowest" val="1"/>
         <VALUE name="outputTransposition" val="0"/>
         <VALUE name="damperPedalEnabled" val="1"/>
         <VALUE name="usesKeyboardChannelPressure" val="0"/>
@@ -17,7 +17,7 @@
         <VALUE name="usesKeyboardModWheel" val="0"/>
         <VALUE name="usesKeyboardPedals" val="1"/>
         <VALUE name="usesKeyboardMidiControllers" val="0"/>
-        <VALUE name="pitchWheelRange" val="2.0"/>
+        <VALUE name="pitchWheelRange" val="12.0"/>
         <VALUE name="retransmitMaxPolyphony" val="8"/>
         <VALUE name="useVoiceStealing" val="0"/>
       </Properties>
@@ -75,7 +75,7 @@
         <VALUE name="ignoresTwoFingers" val="0"/>
         <VALUE name="ignoresThreeFingers" val="0"/>
         <VALUE name="direction" val="1"/>
-        <VALUE name="use14Bit" val="1"/>
+        <VALUE name="use14Bit" val="0"/>
       </MappingFactory>
       <MappingFactory type="Control">
         <VALUE name="controlName" val="/touchkeys/mapping/segment0/control2"/>
