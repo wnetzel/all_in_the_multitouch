@@ -1,6 +1,7 @@
 # Design & Prototyping Diary
 A diary logging the steps in the iterative instrument design and implementation process in Pure data.
 
+
 ## Oct/Nov 2023 - Initial design phase
 - Started the process of designing the synthesizer in Pd, inspired by the Sequential Prophet-6
 - Chose which modules to implement and which to leave out
@@ -62,7 +63,7 @@ The p6_voice.pd sketch is acting both as the start of a "voice card" and also th
     - It seems that the preset output volume appear balanced when low-pass filtering is added, except when "open".
 
 #### Reflections and considerations
-I need to make a block diagram of the synthesizer design. This could be beneficial to me in the design process as well. At a later stage, a diagram is  needed for the complete instrument as well. Low Resonance takes the energy out of the sound. Look into that. The externals part of the "Pure Data: Electronic Music and Sound Design" book might address and/or solve this.
+*I need to make a block diagram of the synthesizer design.* This could be beneficial to me in the design process as well. At a later stage, a diagram is  needed for the complete instrument as well. Low Resonance takes the energy out of the sound. Look into that. The externals part of the "Pure Data: Electronic Music and Sound Design" book might address and/or solve this.
 
 ---
 
@@ -112,7 +113,7 @@ I need to make a block diagram of the synthesizer design. This could be benefici
 
 
 #### Reflections and considerations
-There is pops and glitches in sound if turning knobs when note is playing (specifically amp env amount). Consider adding lines to smooth parameter changes (slew/lag). With iteration v0.3, the synthesizer finally starts to feel expressive, although it is still monophonic, and played with a small MIDI keyboard. The next step is to add polyphony and MPE support.
+There is pops and glitches in sound if turning knobs when note is playing (specifically amp env amount). Consider adding lines to smooth parameter changes (slew/lag). *With iteration v0.3, the synthesizer finally starts to feel expressive, although it is still monophonic, and played with a small MIDI keyboard.* The next step is to add polyphony and MPE support.
 
 ---
 
@@ -212,7 +213,7 @@ There has been a bug in the previous iterations, where the [r~ osc2] inlet was n
 
 
 #### Reflections and considerations
-The synthesizer is now polyphonic, which brings up another consideration regarding the modulation. I've thought about that it is not necessary to have visual feedback of the knob of a parameters modulation. But now I see that it is not wanted, as the modulation needs to be individual per voice. There might be wish for global modulation through a future LFO, but that will be reflected upon at a later stage. For now, I have to move the modulation of parameters to the synthesizer module logic inside the voicecard.pd abstraction. This also means that there will be need for a separate scaling of the modulation input range, as the scaling is now happening in the GUI patch to make the knobs work in higher resolution than the MIDI 7-bit range. (This was already an conscious choice in making the synthesizer more future-proof and compatible with higher resolution MIDI 2.0, OSC or 14-bit CC.) The scaled modulation input signal will be added/subtracted to the "knob" control signal. There should possibly also be a "depth" control per modulation source or destination.
+The synthesizer is now polyphonic, which brings up another consideration regarding the modulation. I've thought about that it is not necessary to have visual feedback of the knob of a parameters modulation. But now I see that it is not wanted, as the modulation needs to be individual per voice. *There might be wish for global modulation through a future LFO, but that will be reflected upon at a later stage.* For now, I have to move the modulation of parameters to the synthesizer module logic inside the voicecard.pd abstraction. This also means that there will be need for a separate scaling of the modulation input range, as the scaling is now happening in the GUI patch to make the knobs work in higher resolution than the MIDI 7-bit range. (This was already an conscious choice in making the synthesizer more future-proof and compatible with higher resolution MIDI 2.0, OSC or 14-bit CC.) The scaled modulation input signal will be added/subtracted to the "knob" control signal. There should possibly also be a "depth" control per modulation source or destination.
 
 Considering making a matrix for modulation routing!
 
@@ -320,3 +321,14 @@ Update: There was a considerable improvement when removing the linear to logarit
 Modulating certain parameters introduces artifacts to the sound, which can be controlled with using a [vline] object (a slew/lag generator) to smooth out the changes. This however, will introduce some (fading) latency to the modulation or knob turn. If the slewing has to be long, this would affect the responsiveness of the modulation control. *Where is the threshold of balancing the audio quality with the perceived control intimacy?*
 
 I might sometimes get «in the zone» when designing or implementing features in the synthesizer. I might intuitively get an idea of how to add or fix a feature, without necessarily having a concious answer to why (just yet). If it doesn’t work, I will then analyze why it did not and try to fix it. Or change the approach. Even if it works, I will find out why it did, to learn from it. This experience reminds me of being «in the zone» when performing and improvising. You don’t necessarily think consciously about which scale or which rhythmical motifs to use. There is an intuitive approach made possible by all the hours of practice and experience in the craft. When this happens during the design time, I like to think that this is because my knowledge of and experience with synthesizers are elevating my more limited programming experience.
+
+---
+
+## 16/01/2024
+
+- Tested the synthesizer with the TouchKeys in the MCT Synthroom
+    - An external soundcard was needed, as the TouchKeys need a MIDI DIN-cable for merging sensor and MIDI data. The USB-conenction was just for power.
+    - The TouchKeys in "standalone" (triggering MIDI with the sensors) didn't work very well, possibly because of communication issues regarding MIDI note-off messages. (I don't think it sends velocity 0 messages as note-off, but rather actual note-off messages.)
+
+---
+
