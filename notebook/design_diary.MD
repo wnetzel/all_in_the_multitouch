@@ -125,7 +125,7 @@ There is pops and glitches in sound if turning knobs when note is playing (speci
     - Reworked and renamed the [mpeTest] abstraction from *pd_mpe* to [mpe_voice]
         - Added copyright notice
     - Added sends for each parameter
-- Added pitchbend support, with global PB range selector
+- Added pitch-bend support, with global PB range selector
 - Added [glide2pitchbend] abstraction for glide control of frequency
 - Tested 'slide' and 'press' (aftertouch) modulation
     - Slide: [-64, 63]
@@ -144,7 +144,7 @@ There is pops and glitches in sound if turning knobs when note is playing (speci
     - amplifier_envelope
     - master_volume
 - Tested with a ROLI Seaboard Block
-- Glide simulates pitchbend
+- Glide simulates pitch-bend
 - Slide modulates Osc1 Pulse Width
     - Overrides knob
 - Press modulates lpf cutoff frequency
@@ -152,9 +152,9 @@ There is pops and glitches in sound if turning knobs when note is playing (speci
 
 
 #### Reflections and considerations
-I need to implement MPE objects into my synthesizer patch, as in map the individual MPE voices' output to my synthesizer parameters. First up is the 'glide', analogous to pitch-bend, which is a core functionality in MPE. The 'noteoff' architecture needs to adapt top the MPE object as well.
+I need to implement MPE objects into my synthesizer patch, as in map the individual MPE voices' output to my synthesizer parameters. First up is the 'glide', analogous to pitch-bend, which is a core functionality in MPE. The 'noteoff' architecture needs to adapt to the MPE object as well.
 
-Pitchbend control is added to make use of the MPE 'glide' parameter. To enable for 'glide' modulation of other parameters as well, a [glide2pitchbend] abstraction was added. The other MPE control parameters 'slide' and 'press' (aftertouch) is also tested. Cutoff modulation works fine, Pulse Width modulation might have som artifacts. Still considering a [line] object to smooth parameter changes.
+Pitch-bend control is added to make use of the MPE 'glide' parameter. To enable for 'glide' modulation of other parameters as well, a [glide2pitchbend] abstraction was added. The other MPE control parameters 'slide' and 'press' (aftertouch) is also tested. Cutoff modulation works fine, Pulse Width modulation might have som artifacts. Still considering a [line] object to smooth parameter changes.
 
 NB! The latest pd_mpe git activity was committed on Apr 29, 2019. The current build is for win/mac 'i386;x86_64' CPU architectures. This build does not support the new Apple M1/M2/M3 chips, which is in the UiO MCT Synthroom. Considering making a build for the 'arm64e' CPU architecture.
 
@@ -320,14 +320,14 @@ Update: There was a considerable improvement when removing the linear to logarit
 
 Modulating certain parameters introduces artifacts to the sound, which can be controlled with using a [vline] object (a slew/lag generator) to smooth out the changes. This however, will introduce some (fading) latency to the modulation or knob turn. If the slewing has to be long, this would affect the responsiveness of the modulation control. *Where is the threshold of balancing the audio quality with the perceived control intimacy?*
 
-I might sometimes get «in the zone» when designing or implementing features in the synthesizer. I might intuitively get an idea of how to add or fix a feature, without necessarily having a concious answer to why (just yet). If it doesn’t work, I will then analyze why it did not and try to fix it. Or change the approach. Even if it works, I will find out why it did, to learn from it. This experience reminds me of being «in the zone» when performing and improvising. You don’t necessarily think consciously about which scale or which rhythmical motifs to use. There is an intuitive approach made possible by all the hours of practice and experience in the craft. When this happens during the design time, I like to think that this is because my knowledge of and experience with synthesizers are elevating my more limited programming experience.
+I might sometimes get «in the zone» when designing or implementing features in the synthesizer. I might intuitively get an idea of how to add or fix a feature, without necessarily having a conscious answer to why (just yet). If it doesn’t work, I will then analyze why it did not and try to fix it. Or change the approach. Even if it works, I will find out why it did, to learn from it. This experience reminds me of being «in the zone» when performing and improvising. You don’t necessarily think consciously about which scale or which rhythmical motifs to use. There is an intuitive approach made possible by all the hours of practice and experience in the craft. When this happens during the design time, I like to think that this is because my knowledge of and experience with synthesizers are elevating my more limited programming experience.
 
 ---
 
 ## 16/01/2024
 
 - Tested the synthesizer with the TouchKeys in the MCT Synthroom
-    - An external soundcard was needed, as the TouchKeys need a MIDI DIN-cable for merging sensor and MIDI data. The USB-conenction was just for power.
+    - An external sound-card was needed, as the TouchKeys need a MIDI DIN-cable for merging sensor and MIDI data. The USB-connection was just for power.
     - The TouchKeys in "standalone" (triggering MIDI with the sensors) didn't work very well, possibly because of communication issues regarding MIDI note-off messages. (I don't think it sends velocity 0 messages as note-off, but rather actual note-off messages.)
 
 ---
