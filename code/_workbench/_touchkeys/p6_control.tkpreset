@@ -5,7 +5,7 @@
     <Segment>
       <Properties>
         <VALUE name="outputPort" val="0"/>
-        <VALUE name="mode" val="3"/>
+        <VALUE name="mode" val="4"/>
         <VALUE name="channelMask" val="65535"/>
         <VALUE name="noteMin" val="12"/>
         <VALUE name="noteMax" val="127"/>
@@ -39,34 +39,16 @@
         <VALUE name="vibratoOnsetRatioX" val="0.300000011920929"/>
         <VALUE name="vibratoOnsetRatioY" val="0.800000011920929"/>
       </MappingFactory>
-      <MappingFactory type="PitchBend">
-        <VALUE name="controlName" val="/touchkeys/mapping/segment0/pitchbend"/>
-        <VALUE name="inputRangeMin" val="0.0"/>
-        <VALUE name="inputRangeMax" val="0.0"/>
-        <VALUE name="inputRangeCenter" val="0.0"/>
-        <VALUE name="outOfRangeBehavior" val="2"/>
-        <VALUE name="midiControllerNumber" val="128"/>
-        <VALUE name="bypassed" val="0"/>
-        <VALUE name="activeNotes" val="4095"/>
-        <VALUE name="bendRangeSemitones" val="2.0"/>
-        <VALUE name="bendThresholdSemitones" val="0.2000000029802322"/>
-        <VALUE name="bendThresholdKeyLength" val="0.1000000014901161"/>
-        <VALUE name="bendMode" val="1"/>
-        <VALUE name="fixedModeMinEnableDistance" val="0.1000000014901161"/>
-        <VALUE name="fixedModeBufferDistance" val="0.0"/>
-        <VALUE name="bendIgnoresTwoFingers" val="0"/>
-        <VALUE name="bendIgnoresThreeFingers" val="0"/>
-      </MappingFactory>
       <MappingFactory type="Control">
         <VALUE name="controlName" val="/touchkeys/mapping/segment0/control"/>
         <VALUE name="inputRangeMin" val="0.0"/>
         <VALUE name="inputRangeMax" val="1.0"/>
         <VALUE name="inputRangeCenter" val="0.0"/>
         <VALUE name="outOfRangeBehavior" val="2"/>
-        <VALUE name="midiControllerNumber" val="75"/>
-        <VALUE name="bypassed" val="0"/>
+        <VALUE name="midiControllerNumber" val="74"/>
+        <VALUE name="bypassed" val="1"/>
         <VALUE name="activeNotes" val="4095"/>
-        <VALUE name="inputParameter" val="1"/>
+        <VALUE name="inputParameter" val="2"/>
         <VALUE name="inputType" val="1"/>
         <VALUE name="outputRangeMin" val="0.0"/>
         <VALUE name="outputRangeMax" val="127.0"/>
@@ -83,7 +65,7 @@
         <VALUE name="inputRangeMax" val="1.0"/>
         <VALUE name="inputRangeCenter" val="0.0"/>
         <VALUE name="outOfRangeBehavior" val="2"/>
-        <VALUE name="midiControllerNumber" val="76"/>
+        <VALUE name="midiControllerNumber" val="129"/>
         <VALUE name="bypassed" val="0"/>
         <VALUE name="activeNotes" val="4095"/>
         <VALUE name="inputParameter" val="3"/>
@@ -107,7 +89,7 @@
         <VALUE name="bypassed" val="0"/>
         <VALUE name="activeNotes" val="4095"/>
         <VALUE name="inputParameter" val="5"/>
-        <VALUE name="inputType" val="1"/>
+        <VALUE name="inputType" val="2"/>
         <VALUE name="outputRangeMin" val="0.0"/>
         <VALUE name="outputRangeMax" val="127.0"/>
         <VALUE name="outputDefault" val="0.0"/>

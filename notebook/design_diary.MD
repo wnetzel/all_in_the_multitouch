@@ -325,10 +325,21 @@ I might sometimes get «in the zone» when designing or implementing features in
 ---
 
 ## 16/01/2024
-
 - Tested the synthesizer with the TouchKeys in the MCT Synthroom
     - An external sound-card was needed, as the TouchKeys need a MIDI DIN-cable for merging sensor and MIDI data. The USB-connection was just for power.
     - The TouchKeys in "standalone" (triggering MIDI with the sensors) didn't work very well, possibly because of communication issues regarding MIDI note-off messages. (I don't think it sends velocity 0 messages as note-off, but rather actual note-off messages.)
 
 ---
 
+## 18/01/2024
+- Removed the [+ 64] 'ROLI offset' to the pitch glide control (pitch-bend), which was added to compensate for what seemed like a slight off-center pitch deviation with the ROLI Lightblock controller.
+
+---
+
+## 22/01/2024
+- Added a _testing-folder and a patch for testing 7-bit versus 14-bit CC modulation resolution
+    - The bit selector works for changing to 14-bit!
+    - The logic for receiving 14-bit values through two CC channels could probably be improved (proof-of-concept)
+
+#### Reflections and considerations
+With the y-axis modulating "resolution-sensitive" parameters such as the LPF cutoff frequency, the 7-bit resolution sound steppy glitchy, while the 14-bit resolution sounds smooth. The cutoff and envelope modulation was turned all the way of, while the resonance was boosted high, to really hear the frequency response of the filter being modulated. However, there is some "re-triggering" issues when operating in 14-bit mode. The logic of combining two 7-bit CCs to one 14-bit value probably needs to be fine-tuned, but this works as a proof-of-concept and to compare the resolution.
