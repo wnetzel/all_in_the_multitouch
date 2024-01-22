@@ -2,15 +2,16 @@
 #X obj 114 205 ./GUI/oscillator_1;
 #X obj 114 379 ./GUI/oscillator_2;
 #X obj 1589 1 cnv 19 256 512 empty empty Global\ parameters 36 12 0 18 #c6ffc7 #9c00ff 0;
-#N canvas 1237 406 450 300 bit_resolution 1;
+#N canvas 1237 406 450 300 bit_resolution 0;
 #X msg 147 112 7;
 #X msg 209 112 16;
 #X msg 178 112 14;
 #X msg 240 112 32;
 #X floatatom 147 166 14 0 0 0 - - - 0;
 #X obj 147 141 expr (pow(2 \, $i1)) - 1;
-#X obj 147 86 loadbang;
+#X obj 147 56 loadbang;
 #X obj 147 189 s bit;
+#X obj 178 84 r 14bit;
 #X connect 0 0 5 0;
 #X connect 1 0 5 0;
 #X connect 2 0 5 0;
@@ -18,9 +19,10 @@
 #X connect 4 0 7 0;
 #X connect 5 0 4 0;
 #X connect 6 0 0 0;
+#X connect 8 0 2 0;
 #X restore 1646 59 pd bit_resolution;
 #X obj 697 204 ./GUI/mixer;
-#N canvas 1266 552 564 443 init 1;
+#N canvas 1266 552 564 443 init 0;
 #X obj 44 59 loadbang;
 #X obj 449 29 loadbang;
 #X msg 449 91 12;
@@ -170,6 +172,8 @@
 #X symbolatom 501 848 16 0 0 2 Module press_mod_module - 0;
 #X obj 788 843 else/knob 26 0 1 0 0 press_mod_depth press_mod_depth_I #e3c6ff #9c00ff #131255 0 0 0 0 1 320 0 0 0;
 #X text 740 852 Depth:;
+#X obj 1660 298 s 14bit;
+#X obj 1660 257 bng 25 250 50 0 empty empty empty 0 -10 0 12 #00ff04 #feffc6 #000000;
 #X connect 0 0 16 0;
 #X connect 0 1 22 0;
 #X connect 0 2 23 0;
@@ -234,3 +238,4 @@
 #X connect 65 0 7 4;
 #X connect 66 0 7 5;
 #X connect 67 0 7 0;
+#X connect 89 0 88 0;
