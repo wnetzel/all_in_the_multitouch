@@ -1441,7 +1441,7 @@
 #X obj 844 167 *~;
 #X obj 906 115 r~ \$0-amp_env;
 #X obj 785 116 r~ \$0-lpf;
-#N canvas 767 387 845 565 modulation 0;
+#N canvas 767 387 845 565 modulation 1;
 #X text 353 52 --- Modulation ---;
 #N canvas 197 31 1414 1089 press_mod 0;
 #X obj 698 1028 s \$0-o1_pw_mod;
@@ -2408,7 +2408,6 @@
 #X connect 76 0 10 0;
 #X restore 571 343 pd lift_mod;
 #X text 125 484 Pitch Glide/Vibrato;
-#X text 449 482 X-Axis;
 #X text 173 225 Glide;
 #X text 302 228 CC: 75;
 #X text 450 225 X-Axis;

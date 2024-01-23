@@ -343,3 +343,12 @@ I might sometimes get «in the zone» when designing or implementing features in
 
 #### Reflections and considerations
 With the y-axis modulating "resolution-sensitive" parameters such as the LPF cutoff frequency, the 7-bit resolution sound steppy glitchy, while the 14-bit resolution sounds smooth. The cutoff and envelope modulation was turned all the way of, while the resonance was boosted high, to really hear the frequency response of the filter being modulated. However, there is some "re-triggering" issues when operating in 14-bit mode. The logic of combining two 7-bit CCs to one 14-bit value probably needs to be fine-tuned, but this works as a proof-of-concept and to compare the resolution.
+
+---
+
+## 23/01/2024
+
+#### Reflections and considerations
+My assumptions about the TouchKeys X-axis controlling the "Pitch Bend" mapping was wrong, it with its Y-axis. No major implications for the synthesizer, as the functionality works anyway. I have to readjust my mind though, between the glide (x-axis) of ROLI, and the Pitch Bend (y-axis) of TouchKeys. Allthough I think it feels much more natural to control pitch-bends sideways, I guess it makes sense since the TouchKeys keys get depressed as keyboards do.
+
+---

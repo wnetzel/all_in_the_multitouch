@@ -2411,7 +2411,6 @@
 #X connect 76 0 10 0;
 #X restore 571 343 pd lift_mod;
 #X text 125 484 Pitch Glide/Vibrato;
-#X text 449 482 X-Axis;
 #X text 173 225 Glide;
 #X text 302 228 CC: 75;
 #X text 450 225 X-Axis;
