@@ -1,3 +1,5 @@
+A sketchbook for potential modules to implement
+
 # Oscillator 1
 - else/bl.vsaw~
 - else/bl.square~
