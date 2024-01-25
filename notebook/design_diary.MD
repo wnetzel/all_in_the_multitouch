@@ -342,13 +342,53 @@ I might sometimes get «in the zone» when designing or implementing features in
     - The logic for receiving 14-bit values through two CC channels could probably be improved (proof-of-concept)
 
 #### Reflections and considerations
-With the y-axis modulating "resolution-sensitive" parameters such as the LPF cutoff frequency, the 7-bit resolution sound steppy glitchy, while the 14-bit resolution sounds smooth. The cutoff and envelope modulation was turned all the way of, while the resonance was boosted high, to really hear the frequency response of the filter being modulated. However, there is some "re-triggering" issues when operating in 14-bit mode. The logic of combining two 7-bit CCs to one 14-bit value probably needs to be fine-tuned, but this works as a proof-of-concept and to compare the resolution.
+With the y-axis modulating "resolution-sensitive" parameters such as the LPF cutoff frequency, the 7-bit resolution sound 'steppy' and 'glitchy', while the 14-bit resolution sounds smooth. The cutoff and envelope modulation was turned all the way of, while the resonance was boosted high, to really hear the frequency response of the filter being modulated. However, there is some "re-triggering" issues when operating in 14-bit mode. The logic of combining two 7-bit CCs to one 14-bit value probably needs to be fine-tuned, but this works as a proof-of-concept and to compare the resolution.
 
 ---
 
 ## 23/01/2024
 
 #### Reflections and considerations
-My assumptions about the TouchKeys X-axis controlling the "Pitch Bend" mapping was wrong, it with its Y-axis. No major implications for the synthesizer, as the functionality works anyway. I have to readjust my mind though, between the glide (x-axis) of ROLI, and the Pitch Bend (y-axis) of TouchKeys. Allthough I think it feels much more natural to control pitch-bends sideways, I guess it makes sense since the TouchKeys keys get depressed as keyboards do.
+My assumptions about the TouchKeys X-axis controlling the "Pitch Bend" mapping was wrong, it with its Y-axis. No major implications for the synthesizer, as the functionality works anyway. I have to readjust my mind though, between the glide (x-axis) of ROLI, and the Pitch Bend (y-axis) of TouchKeys. Although I think it feels much more natural to control pitch-bends sideways, I guess it makes sense since the TouchKeys keys get depressed as keyboards do.
+
+---
+
+## 24/01/2024
+- Started with "The Knob"
+    - A knob on the front GUI controls the amount of 'black box' modulation happening in the voicecard.pd abstraction
+    - Adds a many-to-many mapping strategy
+- Ideas:
+    - "Backwards" [metro] controlling "sample & hold"-ish modulation of frequency
+        - Random modulation of S&H modulating "frequency"
+        - Frequency is the cutoff frequency of a low-pass filter using resonance (it's not modulating pitch per se)
+        - "Backwards" More rapid metro changes when knob is low and less when it is set high
+    - Using modulus of 127 when combining input parameters, instead of the clipping happening in the module logic
+    - Use negative numbers as well, for decreasing parameter values
+    - line with metro-modulated time between changes in randomized modulation
+
+---
+
+## 25/01/2024
+- Added "The Knob" to the front panel GUI
+- It has a [pd the_knob] sub-patch, providing 5 random numbers
+    1. Random number 0-127 every 20 ms
+    2. Random number 0-127 every 100 ms
+    3. Random number 0-127 every 500 ms
+    4. Random number 0-1000 every 2000-50 ms (2000, when knob is off down to 50 when knob is fully on)
+    5. Random number 0-1000 every 50-2000 ms (50, when knob is off up to 2000 when knob is fully on)
+- Made a template for setting up the_knob mappings (in the _tools folder)
+- Added a [pd knob_modulation] sub-patch to the modulation area of the voice card abstraction
+    - Set up a test-mapping with random elements and many-to-many mappings
+
+
+### Iteration v2 – The Knob
+- The synthesizer now has a Knob for 'black box' complex many-to-many mappings
+- The knob ships with 5 random number generators, of different speeds
+- A template abstraction for setting up mappings are included in the _tools folder
+- A quick test with of a mapping idea acts as a proof-of-concept
+
+
+#### Reflections and considerations
+It didn't work as expected with the S&H idea as is, but there is lots of potential here! At a later time, I have to fix the modulation matrix interfering (when turning off destinations).
 
 ---
