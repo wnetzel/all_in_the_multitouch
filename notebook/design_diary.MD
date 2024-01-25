@@ -381,7 +381,7 @@ My assumptions about the TouchKeys X-axis controlling the "Pitch Bend" mapping w
     - Set up a test-mapping with random elements and many-to-many mappings
 
 
-### Iteration v2 – The Knob
+### Iteration v3 – The Knob
 - The synthesizer now has a Knob for 'black box' complex many-to-many mappings
 - The knob ships with 5 random number generators, of different speeds
 - A template abstraction for setting up mappings are included in the _tools folder

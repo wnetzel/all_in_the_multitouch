@@ -1,8 +1,8 @@
-# It's All In The Multitouch
+# Exploring Multi-Touch Instruments With MPE and MIDI 2.0
  A repository for my thesis in the Master's program "Music, Communication and Technology" at the University of Oslo.
 
  ## Code
- Contains "Pinnacle-6", my Pure data synthesizer inspired by the [Sequential Prophet-6](https://www.sequential.com/product/prophet-6/).
+ Contains "P-6", my Pure data synthesizer inspired by the [Sequential Prophet-6](https://www.sequential.com/product/prophet-6/).
 
  Dependencies:
  - [Pure Data (0.54-1)](https://puredata.info/)
@@ -13,5 +13,3 @@ The synthesizer contains a modified version of a Pure data abstraction for parsi
 
  ## Thesis
  The thesis will be added at a later stage.
-
- 
