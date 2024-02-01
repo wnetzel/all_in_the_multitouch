@@ -2,7 +2,7 @@
 A repository for my thesis in the Master's program "Music, Communication and Technology" at the University of Oslo.
 
 ## Code
- Contains "P-6", my Pure data synthesizer inspired by the [Sequential Prophet-6](https://www.sequential.com/product/prophet-6/).
+ Contains **P-6**, my Pure data synthesizer inspired by the [Sequential Prophet-6](https://www.sequential.com/product/prophet-6/).
 
 Dependencies:
  - [Pure Data (0.54-1)](https://puredata.info/)
