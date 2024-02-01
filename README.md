@@ -13,3 +13,6 @@ The synthesizer contains a modified version of a Pure data abstraction for parsi
 
 ## Video Demonstration
 Video demonstrations are found in the associated [OSF repository](https://doi.org/10.17605/OSF.IO/JFMCV).
+
+## Blogpost
+*Coming soon*
