@@ -5,14 +5,14 @@ A repository for my thesis in the Master's program "Music, Communication and Tec
  Contains **P-6**, my Pure data synthesizer inspired by the [Sequential Prophet-6](https://www.sequential.com/product/prophet-6/).
 
 Dependencies:
- - [Pure Data (0.54-1)](https://puredata.info/)
- - [Else (1.0-0 RC-10)](https://github.com/porres/pd-else/) library for Pure Data
- - [pd_mpe](https://github.com/DanielRudrich/pd_mpe) Pure Data external for MIDI Polyphonic Expression (MPE)
+ - [Pure Data](https://puredata.info/) (Version 0.54-1 or newer)
+ - The [ELSE](https://github.com/porres/pd-else/) library for Pure Data (Version 1.0-0 RC-10 or newer)
+ - The [pd_mpe](https://github.com/DanielRudrich/pd_mpe) Pure Data external for MIDI Polyphonic Expression (MPE) support
 
 The synthesizer contains a modified version of a Pure data abstraction for parsing MPE data found in the pd_mpe external by [DanielRudrich](https://github.com/DanielRudrich/), released under the GPL-3.0 license.
 
 ## Video Demonstration
 Video demonstrations are found in the associated [OSF repository](https://doi.org/10.17605/OSF.IO/JFMCV).
 
-## Blogpost
-*Coming soon*
+## Known Issues
+As the last build of the [pd_mpe](https://github.com/DanielRudrich/pd_mpe) external is from April 2019, the external won't currently run on Apple silicon (M-series) processors. Please reach out if you could help with compiling it for the arm64 architecture.
