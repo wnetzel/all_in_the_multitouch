@@ -15,4 +15,4 @@ The synthesizer contains a modified version of a Pure data abstraction for parsi
 Video demonstrations are found in the associated [OSF repository](https://doi.org/10.17605/OSF.IO/JFMCV).
 
 ## Known Issues
-As the last build of the [pd_mpe](https://github.com/DanielRudrich/pd_mpe) external is from April 2019, the external won't currently run on Apple silicon (M-series) processors. Please reach out if you could help with compiling it for the arm64 architecture.
+As the last build of the [pd_mpe](https://github.com/DanielRudrich/pd_mpe) external is from April 2019, it will not currently run on Apple silicon (M-series) processors. Please reach out if you could help with compiling this external for the arm64 architecture.
